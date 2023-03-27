@@ -1,0 +1,11 @@
+@import "./styles/resetter.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+    min-height: 100vh;
+    height: max-content;
+    background-color: #DAD6D3;
+}
