@@ -9,3 +9,7 @@ html {
     height: max-content;
     background-color: #DAD6D3;
 }
+
+.title {
+    @apply text-lg text-center sm:text-2xl 2xl:text-3xl
+}
