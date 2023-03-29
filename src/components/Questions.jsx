@@ -8,8 +8,6 @@ import QuizList from "./QuizList.jsx";
 import toast from "react-hot-toast";
 
 
-
-
 const Questions = observer(() => {
     const {q} = useContext(Context)
     const {user} = useContext(Context)
@@ -29,10 +27,10 @@ const Questions = observer(() => {
             try {
                 await fetch('http://localhost:8080/user/auth', {
                     method: "POST",
-                    body: {...user.user}
+                    headers: {"Content-Type": "application/json"},
+                    body: JSON.stringify({...user.user})
                 })
-            }
-            catch (e) {
+            } catch (e) {
                 console.log(e)
             }
 
