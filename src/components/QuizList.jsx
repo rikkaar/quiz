@@ -22,14 +22,24 @@ const QuizList = () => {
                         id={variant}
                         className={"hidden"}
                         onChange={e => handleChoice(e)}
+                        // onKeyDown={async event => {
+                        //     if (event.key === "Space") {
+                        //         console.log("submi1t")
+                        //         handleChoice(event)
+                        //         event.preventDefault()
+                        //     }}}
                     />
                     {user.user[q.questions[q.position].field] === variant
-                        ? <label
-                            className={"bg-gray-300 hover:bg-gray-300 flex items-center border-2 px-5 py-3 rounded-xl w-full shadow-sm text-lg focus:outline-none cursor-pointer"}
-                            htmlFor={variant}>{variant}</label>
-                        : <label
-                            className={"bg-white hover:bg-gray-300 flex items-center border-2 px-5 py-3 rounded-xl w-full shadow-sm text-lg focus:outline-none cursor-pointer "}
-                            htmlFor={variant}>{variant}</label>
+                        ? <label tabIndex={0}
+                            className={"bg-gray-300 hover:bg-gray-300 focus:bg-gray-300 flex items-center border-2 px-5 py-3 rounded-xl w-full shadow-sm text-lg focus:outline-none cursor-pointer"}
+                            htmlFor={variant}
+
+                        >{variant}</label>
+
+                        : <label tabIndex={0}
+                            className={"bg-white hover:bg-gray-300 focus:bg-gray-300 flex items-center border-2 px-5 py-3 rounded-xl w-full shadow-sm text-lg focus:outline-none cursor-pointer "}
+                            htmlFor={variant}
+                            >{variant}</label>
                     }
                 </div>
             )

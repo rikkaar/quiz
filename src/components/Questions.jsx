@@ -6,11 +6,15 @@ import {useNavigate} from "react-router-dom";
 import Input from "./Input.jsx";
 import QuizList from "./QuizList.jsx";
 import toast from "react-hot-toast";
+import {render} from "react-dom";
+import Loader from "./UI/Loader/Loader.jsx";
+import Modal from "./UI/Modal/Modal.jsx";
 
 
 const Questions = observer(() => {
     const {q} = useContext(Context)
     const {user} = useContext(Context)
+    const {loader} = useContext(Context)
     const navigate = useNavigate();
 
     const nextHandler = async (e) => {
@@ -22,7 +26,7 @@ const Questions = observer(() => {
             q.setPosition(q.position + 1)
         } else {
             console.log({...user.user})
-
+            loader.setVisible(true)
             // отправка данных на сервак //
             try {
                 await fetch('http://localhost:8080/user/auth', {
@@ -33,8 +37,11 @@ const Questions = observer(() => {
             } catch (e) {
                 console.log(e)
             }
-
-            return navigate('/result')
+            const redirectLink = 'https://www.google.com/'
+            return window.location.href = redirectLink
+            // return window.location.replace('https://bobbyhadz.com');
+            // return navigate('https://www.youtube.com/watch?v=d0qZhHRsg7w&ab_channel=REDGroup')
+            // return navigate('/result')
         }
     }
 
@@ -50,10 +57,11 @@ const Questions = observer(() => {
     console.log(user.user)
 
     return (
-        <div className={"w-full"}>
+        <div className={"w-full relative"}>
             <h3 className="text-center text-xl min-[350px]:text-2xl font-bold">{q.questions[q.position].title}</h3>
 
-            <form action="" className={'pt-3 pb-1 w-full'}>
+            <form
+                className={'pt-3 pb-1 w-full'}>
                 <div className="w-full flex flex-col items-center gap-3">
                     {(q.questions[q.position]?.variants)
                         ? <QuizList key={q.position}/>
