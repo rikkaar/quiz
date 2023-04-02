@@ -5,7 +5,7 @@ import {Context} from "../../../store/Context.jsx";
 
 
 
-const Modal = observer(({children}) => {
+const Modal = observer(() => {
     const rootClasses = [classes.modal]
     const {loader} = useContext(Context)
 
@@ -16,7 +16,7 @@ const Modal = observer(({children}) => {
     return (
         <div className={rootClasses.join(' ')} onClick={() => loader.setVisible(false)}>
             <div className={classes.modalContent} onClick={e => e.stopPropagation()}>
-                {children}
+                {loader.children()}
             </div>
         </div>
     );

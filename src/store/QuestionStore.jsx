@@ -1,4 +1,6 @@
 import {makeAutoObservable} from "mobx";
+import toast from "react-hot-toast";
+import React from "react";
 
 export default class UserStore {
     constructor() {
@@ -69,15 +71,40 @@ export default class UserStore {
         return this._position
     }
 
-    prevHandler() {
-        if (this._position >= 1) {
-            this._position(this._position - 1)
+    prevHandler (e, q, navigate) {
+        e.preventDefault()
+        if (q.position >= 1) {
+            q.setPosition(q.position - 1)
+        } else {
+            return navigate('/')
         }
     }
 
-    nextHandler() {
-        if ((this._questions - this._position) > 1) {
-            this._position = this._position + 1
+
+    async nextHandler (e, q, user, loader){
+        e.preventDefault()
+        if (!user.user[q.questions[q.position].field]) {
+            return toast.error('Заполните поле!')
+        }
+        if ((q.questions.length - q.position) > 1) {
+            q.setPosition(q.position + 1)
+        } else {
+            loader.setVisible(true)
+            // отправка данных на сервак //
+            try {
+                await fetch(`${import.meta.env.VITE_API_LINK}/login`, {
+                    method: "POST",
+                    headers: {"Content-Type": "application/json"},
+                    body: JSON.stringify({...user.user})
+                }).then(() => {
+                    toast.success('Спасибо за ответ')
+                    return window.location.href = import.meta.env.VITE_REDIRECT_LINK
+                })
+            } catch (e) {
+                loader.setVisible(false)
+                console.log(e)
+                return toast.error('Произошла техническая ошибка')
+            }
         }
     }
 }

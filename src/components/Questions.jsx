@@ -1,14 +1,9 @@
 import React, {useContext} from 'react';
-
 import {Context} from "../store/Context.jsx";
 import {observer} from "mobx-react-lite";
 import {useNavigate} from "react-router-dom";
 import Input from "./Input.jsx";
 import QuizList from "./QuizList.jsx";
-import toast from "react-hot-toast";
-import {render} from "react-dom";
-import Loader from "./UI/Loader/Loader.jsx";
-import Modal from "./UI/Modal/Modal.jsx";
 
 
 const Questions = observer(() => {
@@ -16,45 +11,6 @@ const Questions = observer(() => {
     const {user} = useContext(Context)
     const {loader} = useContext(Context)
     const navigate = useNavigate();
-
-    const nextHandler = async (e) => {
-        e.preventDefault()
-        if (!user.user[q.questions[q.position].field]) {
-            return toast.error('Заполните поле!')
-        }
-        if ((q.questions.length - q.position) > 1) {
-            q.setPosition(q.position + 1)
-        } else {
-            console.log({...user.user})
-            loader.setVisible(true)
-            // отправка данных на сервак //
-            try {
-                await fetch('http://localhost:8080/user/auth', {
-                    method: "POST",
-                    headers: {"Content-Type": "application/json"},
-                    body: JSON.stringify({...user.user})
-                })
-            } catch (e) {
-                console.log(e)
-            }
-            const redirectLink = 'https://www.google.com/'
-            return window.location.href = redirectLink
-            // return window.location.replace('https://bobbyhadz.com');
-            // return navigate('https://www.youtube.com/watch?v=d0qZhHRsg7w&ab_channel=REDGroup')
-            // return navigate('/result')
-        }
-    }
-
-    const prevHandler = (e) => {
-        e.preventDefault()
-        if (q.position >= 1) {
-            q.setPosition(q.position - 1)
-        } else {
-            return navigate('/')
-        }
-    }
-
-    console.log(user.user)
 
     return (
         <div className={"w-full relative"}>
@@ -69,10 +25,10 @@ const Questions = observer(() => {
                     }
                 </div>
                 <div className="flex flex-end justify-between w-full pt-5">
-                    <button onClick={e => prevHandler(e)}
+                    <button onClick={e => q.prevHandler(e, q, navigate)}
                             className="border bg-red-300 w-max px-2 py-1 rounded-lg text-base text-gray-50 shadow-sm text-center hover:bg-red-400 transition-all duration-150">Назад
                     </button>
-                    <button onClick={e => nextHandler(e)}
+                    <button onClick={e => q.nextHandler(e, q, user, loader)}
                             className="border bg-indigo-300 w-max px-2 py-1 rounded-lg text-base text-gray-50 shadow-sm text-center hover:bg-indigo-400 transition-all duration-150">{(q.questions.length - q.position <= 1) ? "Отправить" : "Далее"}</button>
                 </div>
             </form>

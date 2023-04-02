@@ -6,10 +6,10 @@ const QuizList = () => {
     const {user} = useContext(Context)
 
     const handleChoice = (e) => {
-        console.log({[q.questions[q.position].field]: e.target.value, ...user.user})
         user.setUser({...user.user, [q.questions[q.position].field]: e.target.value})
         q.setPosition(q.position + 1)
     }
+
     return (
         q.questions[q.position].variants.map(variant => {
             return (
@@ -22,12 +22,6 @@ const QuizList = () => {
                         id={variant}
                         className={"hidden"}
                         onChange={e => handleChoice(e)}
-                        // onKeyDown={async event => {
-                        //     if (event.key === "Space") {
-                        //         console.log("submi1t")
-                        //         handleChoice(event)
-                        //         event.preventDefault()
-                        //     }}}
                     />
                     {user.user[q.questions[q.position].field] === variant
                         ? <label tabIndex={0}

@@ -1,11 +1,9 @@
 import './App.css'
 import AppRouter from "./components/AppRouter.jsx";
 import {BrowserRouter} from "react-router-dom";
-import React, {useContext} from "react";
+import React from "react";
 import { Toaster } from 'react-hot-toast';
-import Loader from "./components/UI/Loader/Loader.jsx";
 import Modal from "./components/UI/Modal/Modal.jsx";
-import {Context} from "./store/Context.jsx";
 
 
 function App() {
@@ -22,7 +20,7 @@ function App() {
                                 color: '#fff',
                             }}}
                     />
-                    <Modal><Loader/></Modal>
+                    <Modal/>
                 </div>
             </div>
         </BrowserRouter>
