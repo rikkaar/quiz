@@ -1,6 +1,7 @@
 import {makeAutoObservable} from "mobx";
 import toast from "react-hot-toast";
 import React from "react";
+import {validate} from "../utils/validation.js";
 
 export default class UserStore {
     constructor() {
@@ -9,12 +10,14 @@ export default class UserStore {
             {
                 title: "Как вас зовут?",
                 placeholder: "Фио",
-                field: "name"
+                field: "name",
+                validation: ["string"]
             },
             {
                 title: "Ваш номер телефона",
                 placeholder: "+7 (999) 999-99-99",
-                field: "number"
+                field: "number",
+                validation: ["phone"]
             },
             {
                 title: 'Как связаться?',
@@ -24,7 +27,8 @@ export default class UserStore {
             {
                 title: 'Сколько вам лет?',
                 placeholder: 'Возраст',
-                field: "age"
+                field: "age",
+                validation: ["number"]
             },
             {
                 title: 'У тебя уже был опыт в стилистике?',
@@ -44,12 +48,14 @@ export default class UserStore {
             {
                 title: "Сколько ты хочешь зарабатывать в месяц?",
                 placeholder: "Введите сумму",
-                field: "money"
+                field: "money",
+                validation: ["number"]
             },
             {
                 title: "В каком городе проживаешь?",
                 placeholder: "Название города",
-                field: "city"
+                field: "city",
+                validation: ["string"]
             }
         ]
         makeAutoObservable(this)
@@ -81,11 +87,18 @@ export default class UserStore {
     }
 
 
-    async nextHandler (e, q, user, loader){
+    async nextHandler (e, q, user, loader, navigate){
         e.preventDefault()
         if (!user.user[q.questions[q.position].field]) {
             return toast.error('Заполните поле!')
         }
+        // validation of fields here
+        if (q.questions[q.position].validation) {
+            let errors = validate(user.user[q.questions[q.position].field], q.questions[q.position].validation)
+            if (errors.length) return
+        }
+
+
         if ((q.questions.length - q.position) > 1) {
             q.setPosition(q.position + 1)
         } else {
@@ -98,7 +111,8 @@ export default class UserStore {
                     body: JSON.stringify({...user.user})
                 }).then(() => {
                     toast.success('Спасибо за ответ')
-                    return window.location.href = import.meta.env.VITE_REDIRECT_LINK
+                    //return window.location.href = import.meta.env.VITE_REDIRECT_LINK
+                    return navigate('/result')
                 })
             } catch (e) {
                 loader.setVisible(false)

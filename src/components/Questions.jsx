@@ -28,7 +28,7 @@ const Questions = observer(() => {
                     <button onClick={e => q.prevHandler(e, q, navigate)}
                             className="border bg-red-300 w-max px-2 py-1 rounded-lg text-base text-gray-50 shadow-sm text-center hover:bg-red-400 transition-all duration-150">Назад
                     </button>
-                    <button onClick={e => q.nextHandler(e, q, user, loader)}
+                    <button onClick={e => q.nextHandler(e, q, user, loader, navigate)}
                             className="border bg-indigo-300 w-max px-2 py-1 rounded-lg text-base text-gray-50 shadow-sm text-center hover:bg-indigo-400 transition-all duration-150">{(q.questions.length - q.position <= 1) ? "Отправить" : "Далее"}</button>
                 </div>
             </form>
