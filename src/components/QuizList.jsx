@@ -25,7 +25,7 @@ const QuizList = () => {
                     />
                     {user.user[q.questions[q.position].field] === variant
                         ? <label tabIndex={0}
-                            className={"bg-gray-300 hover:bg-gray-300 focus:bg-gray-300 flex items-center border-2 px-5 py-3 rounded-xl w-full shadow-sm text-lg focus:outline-none cursor-pointer"}
+                            className={"bg-slate-300 hover:bg-gray-300 focus:bg-gray-300 flex items-center border-2 px-5 py-3 rounded-xl w-full shadow-sm text-lg focus:outline-none cursor-pointer"}
                             htmlFor={variant}
 
                         >{variant}</label>

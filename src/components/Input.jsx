@@ -42,7 +42,7 @@ const Input = observer(() => {
         <input className={styles.textBox}
                value={input}
                onChange={e => handleOnChange(e)}
-               type={q.questions[q.position].field === "number" ? "tel" : "text"}
+               type={q.questions[q.position].validation.includes("number") ? "tel" : "text"}
                placeholder={q.questions[q.position].placeholder}
                onBlur={() => handleOnBlur()}
                autoFocus={true}
