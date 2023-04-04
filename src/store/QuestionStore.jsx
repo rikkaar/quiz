@@ -110,6 +110,7 @@ export default class UserStore {
                     headers: {"Content-Type": "application/json"},
                     body: JSON.stringify({...user.user})
                 }).then(() => {
+                    loader.setVisible(false)
                     toast.success('Спасибо за ответ')
                     //return window.location.href = import.meta.env.VITE_REDIRECT_LINK
                     return navigate('/result')
