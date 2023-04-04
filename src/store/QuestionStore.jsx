@@ -21,7 +21,7 @@ export default class UserStore {
             },
             {
                 title: 'Как связаться?',
-                variants: [ 'telegram', 'whatsApp', 'viber' ],
+                variants: ['telegram', 'whatsApp', 'viber'],
                 field: "messenger"
             },
             {
@@ -32,7 +32,7 @@ export default class UserStore {
             },
             {
                 title: 'У тебя уже был опыт в стилистике?',
-                variants: [ 'да', 'нет' ],
+                variants: ['да', 'нет'],
                 field: "experience"
             },
             {
@@ -77,7 +77,7 @@ export default class UserStore {
         return this._position
     }
 
-    prevHandler (e, q, navigate) {
+    prevHandler(e, q, navigate) {
         e.preventDefault()
         if (q.position >= 1) {
             q.setPosition(q.position - 1)
@@ -87,7 +87,7 @@ export default class UserStore {
     }
 
 
-    async nextHandler (e, q, user, loader, navigate){
+    async nextHandler(e, q, user, loader, navigate) {
         e.preventDefault()
         if (!user.user[q.questions[q.position].field]) {
             return toast.error('Заполните поле!')
@@ -109,12 +109,12 @@ export default class UserStore {
                     method: "POST",
                     headers: {"Content-Type": "application/json"},
                     body: JSON.stringify({...user.user})
-                }).then(() => {
-                    loader.setVisible(false)
-                    toast.success('Спасибо за ответ')
-                    //return window.location.href = import.meta.env.VITE_REDIRECT_LINK
-                    return navigate('/result')
                 })
+                loader.setVisible(false)
+                toast.success('Спасибо за ответ')
+                //return window.location.href = import.meta.env.VITE_REDIRECT_LINK
+                return navigate('/result')
+
             } catch (e) {
                 loader.setVisible(false)
                 console.log(e)
