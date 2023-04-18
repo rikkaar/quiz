@@ -7,18 +7,18 @@ export default class UserStore {
     constructor() {
         this._position = 0
         this._questions = [
-            // {
-            //     title: "Как вас зовут?",
-            //     placeholder: "Фио",
-            //     field: "name",
-            //     validation: ["string"]
-            // },
-            // {
-            //     title: "Ваш номер телефона",
-            //     placeholder: "+7 (999) 999-99-99",
-            //     field: "number",
-            //     validation: ["phone"]
-            // },
+            {
+                title: "Как вас зовут?",
+                placeholder: "Фио",
+                field: "name",
+                validation: ["string"]
+            },
+            {
+                title: "Ваш номер телефона",
+                placeholder: "+7 (999) 999-99-99",
+                field: "number",
+                validation: ["phone"]
+            },
             {
                 title: 'Как связаться?',
                 variants: ['telegram', 'whatsApp', 'viber'],
