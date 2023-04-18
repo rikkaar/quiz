@@ -72,7 +72,6 @@ export default class UserStore {
     }
 
     deleteQuestion(questionField) {
-        console.log("delete")
         this._questions = this._questions.filter(quiz => quiz.field !== questionField)
     }
 
@@ -103,7 +102,6 @@ export default class UserStore {
         if (!user.user[q.questions[q.position].field]) {
             return toast.error('Заполните поле!')
         }
-        console.log({...user.user})
 
 
         // validation of fields here

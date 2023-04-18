@@ -17,7 +17,6 @@ export function validate (input, fields) {
 
     if (fields.includes("phone")) {
         if (!/^[\+7\(\d\d\d\)\s\d\d\d\s\d\d\s\d\d]{17}$/i.test(input)) {
-            console.log(input.length)
             errors.push(toast.error('Номер телефона некорректен!'))
         }
     }

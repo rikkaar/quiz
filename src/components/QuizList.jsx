@@ -14,11 +14,7 @@ const QuizList = () => {
             field: "telegramName",
             validation: ["string", "tgName"]
         }
-        console.log(e.target.value)
-        console.log(q.questions[q.position].field)
-        console.log(user.user[q.questions[q.position].field])
         if (e.target.value === "telegram" && q.questions[q.position].field === "messenger") {
-            console.log("нужно отрендерить новое поле")
             q.addQuestion(q.position, telegramName)
         }
         else if (e.target.value !== "telegram"
