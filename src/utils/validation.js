@@ -1,5 +1,6 @@
 import toast from "react-hot-toast";
 
+
 export function validate (input, fields) {
     const errors = []
     if (fields.includes("string")) {
@@ -21,7 +22,5 @@ export function validate (input, fields) {
         }
     }
 
-
     return errors
-
 }

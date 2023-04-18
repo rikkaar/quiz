@@ -7,18 +7,18 @@ export default class UserStore {
     constructor() {
         this._position = 0
         this._questions = [
-            {
-                title: "Как вас зовут?",
-                placeholder: "Фио",
-                field: "name",
-                validation: ["string"]
-            },
-            {
-                title: "Ваш номер телефона",
-                placeholder: "+7 (999) 999-99-99",
-                field: "number",
-                validation: ["phone"]
-            },
+            // {
+            //     title: "Как вас зовут?",
+            //     placeholder: "Фио",
+            //     field: "name",
+            //     validation: ["string"]
+            // },
+            // {
+            //     title: "Ваш номер телефона",
+            //     placeholder: "+7 (999) 999-99-99",
+            //     field: "number",
+            //     validation: ["phone"]
+            // },
             {
                 title: 'Как связаться?',
                 variants: ['telegram', 'whatsApp', 'viber'],
@@ -65,6 +65,17 @@ export default class UserStore {
         this._questions = questions
     }
 
+    addQuestion(position, question) {
+        const a = this._questions.splice(position + 1, 0, question)
+        // console.log(this._questions)
+        // this._questions = a
+    }
+
+    deleteQuestion(questionField) {
+        console.log("delete")
+        this._questions = this._questions.filter(quiz => quiz.field !== questionField)
+    }
+
     get questions() {
         return this._questions
     }
@@ -92,8 +103,17 @@ export default class UserStore {
         if (!user.user[q.questions[q.position].field]) {
             return toast.error('Заполните поле!')
         }
+        console.log({...user.user})
+
+
         // validation of fields here
         if (q.questions[q.position].validation) {
+            if (q.questions[q.position].validation.includes("tgName")){
+                if (!(user.user[q.questions[q.position].field][0] === "@")) {
+                    user.setUser({...user.user, [q.questions[q.position].field]: `@${user.user[q.questions[q.position].field]}`})
+                }
+            }
+
             let errors = validate(user.user[q.questions[q.position].field], q.questions[q.position].validation)
             if (errors.length) return
         }
@@ -105,6 +125,7 @@ export default class UserStore {
             loader.setVisible(true)
             // отправка данных на сервак //
             try {
+                console.log({...user.user})
                 await fetch(`${import.meta.env.VITE_API_LINK}/login`, {
                     method: "POST",
                     headers: {"Content-Type": "application/json"},
