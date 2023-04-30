@@ -10,7 +10,7 @@ const NotFound = () => {
             <div className={classes.error404Content}>
                 <h1 className={classes.big}>404</h1>
                 <h1>Такой страницы не существует!</h1>
-                <button className={classes.homeBtn} onClick={() => navigate('/quiz/')}>Перейти к опросу!</button>
+                <button className={classes.homeBtn} onClick={() => navigate('/')}>Перейти к опросу!</button>
             </div>
         </div>
     );

@@ -92,7 +92,7 @@ export default class UserStore {
         if (q.position >= 1) {
             q.setPosition(q.position - 1)
         } else {
-            return navigate('/quiz/')
+            return navigate('/')
         }
     }
 
