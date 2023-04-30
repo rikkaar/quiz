@@ -11,7 +11,7 @@ const Navigation = observer(() => {
         if (q.position >= 1) {
             q.setPosition(q.position - 1)
         } else {
-            return navigate('/quiz/quiz/')
+            return navigate('/quiz/')
         }
     }
 
@@ -20,7 +20,7 @@ const Navigation = observer(() => {
             q.setPosition(q.position + 1)
         } else {
             console.log(user.user)
-            return navigate('/quiz/result')
+            return navigate('/result')
         }
     }
 

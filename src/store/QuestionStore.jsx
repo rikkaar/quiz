@@ -92,7 +92,7 @@ export default class UserStore {
         if (q.position >= 1) {
             q.setPosition(q.position - 1)
         } else {
-            return navigate('/quiz/')
+            return navigate('/')
         }
     }
 
@@ -132,7 +132,7 @@ export default class UserStore {
                 loader.setVisible(false)
                 toast.success('Спасибо за ответ')
                 //return window.location.href = import.meta.env.VITE_REDIRECT_LINK
-                return navigate('/quiz/result')
+                return navigate('/result')
 
             } catch (e) {
                 loader.setVisible(false)

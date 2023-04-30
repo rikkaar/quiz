@@ -7,8 +7,8 @@ import Redirect from "../pages/Redirect.jsx";
 
 export const routes = [
     {path: "/", element: Main},
-    {path: "/quiz/quiz", element: Quiz},
-    {path: "/quiz/result", element: Result},
-    {path: "/quiz/redirect/:link", element: Redirect},
-    {path: "/quiz/*", element: NotFound}
+    {path: "/quiz", element: Quiz},
+    {path: "/result", element: Result},
+    {path: "/redirect/:link", element: Redirect},
+    {path: "/*", element: NotFound}
 ]
