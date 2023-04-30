@@ -6,7 +6,7 @@ import Result from "../pages/Result.jsx";
 import Redirect from "../pages/Redirect.jsx";
 
 export const routes = [
-    {path: "/quiz/", element: Main},
+    {path: "/", element: Main},
     {path: "/quiz/quiz", element: Quiz},
     {path: "/quiz/result", element: Result},
     {path: "/quiz/redirect/:link", element: Redirect},
