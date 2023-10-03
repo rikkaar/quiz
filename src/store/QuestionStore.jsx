@@ -8,35 +8,60 @@ export default class UserStore {
         this._position = 0
         this._questions = [
             {
-                title: "Как вас зовут?",
-                placeholder: "Фио",
-                field: "name",
-                validation: ["string"]
-            },
-            {
-                title: "Ваш номер телефона",
-                placeholder: "+7 (999) 999-99-99",
-                field: "number",
-                validation: ["phone"]
-            },
-            {
-                title: 'Как связаться?',
-                variants: ['telegram', 'whatsApp', 'viber'],
-                field: "messenger"
-            },
-            {
                 title: 'Сколько вам лет?',
-                placeholder: 'Возраст',
+                variants: ["До 18 лет", "От 18-25лет", "От 25-35лет", "От 35лет +"],
                 field: "age",
-                validation: ["number"]
             },
             {
-                title: 'У тебя уже был опыт в стилистике?',
-                variants: ['да', 'нет'],
-                field: "experience"
+                title: "Из Какого Вы города?",
+                variants: ["Москва", "Другое"],
+                field: "city",
             },
+            {
+                title: 'Чему бы Вы хотели обучится?',
+                variants: ['Написанию рилсов', 'Упаковоке профиля', 'Вести контент', "Красивой фотографии", "Другое"],
+                field: 'target'
+            },
+            {
+                title: "Кем Вы сейчас работаете?",
+                variants: ["Не работаю", "В декрете", "в офисе", "в онлайне", "Другое"],
+                field: 'work'
+            },
+            {
+                title: "Что у Вас сейчас в приоритете?",
+                variants: ["Увеличить доход", "Стать уверенным в себе", "Начать вести инстраграмм", "Найти любимое дело и зарабатывать на нем", "Другое"],
+                field: "priority"
+            },
+            {
+                title: "Какой у Вас средний доход в месяц?",
+                variants: ["Не зарабатываю", "От 10.000-20.000", "От 20.000-40.000", "От 40.0000-60.000", "От 60.000-100.000", "Свыше 100.000"],
+                field: "salary"
+            }
             // {
-            //     title: 'Какие у тебя цели?',
+            //     title: "Как вас зовут?",
+            //     placeholder: "Фио",
+            //     field: "name",
+            //     validation: ["string"]
+            // },
+            // {
+            //     title: "Ваш номер телефона",
+            //     placeholder: "+7 (999) 999-99-99",
+            //     field: "number",
+            //     validation: ["phone"]
+            // },
+            // {
+            //     title: 'Как связаться?',
+            //     variants: ['telegram', 'whatsApp', 'viber'],
+            //     field: "messenger"
+            // },
+            // {
+            //     title: 'У тебя уже был опыт в стилистике?',
+            //     variants: ['да', 'нет'],
+            //     field: "experience"
+            // },
+            // variants: ["вариант 1", "вариант 2", {title, validation}]
+            // {
+            //     title: 'Чему бы Вы хотели обучится?',
             //     variants: ['Основная работа', 'Дополнительный заработок', 'Xобби'],
             //     field: 'target'
             // },
@@ -51,12 +76,12 @@ export default class UserStore {
             //     field: "money",
             //     validation: ["number"]
             // },
-            {
-                title: "В каком городе проживаешь?",
-                placeholder: "Название города",
-                field: "city",
-                validation: ["string"]
-            }
+            // {
+            //     title: "В каком городе проживаешь?",
+            //     placeholder: "Название города",
+            //     field: "city",
+            //     validation: ["string"]
+            // }
         ]
         makeAutoObservable(this)
     }
@@ -115,7 +140,6 @@ export default class UserStore {
             let errors = validate(user.user[q.questions[q.position].field], q.questions[q.position].validation)
             if (errors.length) return
         }
-
 
         if ((q.questions.length - q.position) > 1) {
             q.setPosition(q.position + 1)

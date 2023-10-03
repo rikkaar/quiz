@@ -1,10 +1,13 @@
 import React, {useContext} from 'react';
 import {Context} from "../store/Context.jsx";
+import {useNavigate} from "react-router-dom";
 import {observer} from "mobx-react-lite";
 
 const QuizList = () => {
     const {q} = useContext(Context)
     const {user} = useContext(Context)
+    const {loader} = useContext(Context)
+    const navigate = useNavigate();
 
     const handleChoice = (e) => {
         user.setUser({...user.user, [q.questions[q.position].field]: e.target.value})
@@ -23,9 +26,11 @@ const QuizList = () => {
             user.deleteAnswer("telegramName")
         }
 
-        q.setPosition(q.position + 1)
+        q.nextHandler(e, q, user, loader, navigate)
     }
 
+    // отобразить все варианты
+    // если наткнулись на вариант типа {input, placeholder}
     return (
         q.questions[q.position].variants.map(variant => {
             return (

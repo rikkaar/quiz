@@ -11,7 +11,6 @@ const Questions = observer(() => {
     const {user} = useContext(Context)
     const {loader} = useContext(Context)
     const navigate = useNavigate();
-
     return (
         <div className={"w-full relative"}>
             <h3 className="text-center text-xl min-[350px]:text-2xl font-bold">{q.questions[q.position].title}</h3>
@@ -21,7 +20,7 @@ const Questions = observer(() => {
                 <div className="w-full flex flex-col items-center gap-3">
                     {(q.questions[q.position]?.variants)
                         ? <QuizList key={q.position}/>
-                        : <Input key={q.position}/>
+                        : <Input key={q.position}Это/>
                     }
                 </div>
                 <div className="flex flex-end justify-between w-full pt-5">

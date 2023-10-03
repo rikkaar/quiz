@@ -7,7 +7,7 @@ const Result = () => {
               <div className="profile flex flex-center py-2 justify-center">
                 <img className={"w-[300px]"} src={result} alt=""/>
             </div>
-            <h2 className={"text-xl text-center pt-10"}>Увидимся на разборе!</h2>
+            <h2 className={"text-xl text-center pt-10"}>Спасибо за участие!</h2>
         </div>
     );
 };

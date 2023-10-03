@@ -19,7 +19,6 @@ const Navigation = observer(() => {
         if ((q.questions.length - q.position) > 1) {
             q.setPosition(q.position + 1)
         } else {
-            console.log(user.user)
             return navigate('/result')
         }
     }
