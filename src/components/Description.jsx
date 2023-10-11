@@ -9,7 +9,7 @@ const Description = () => {
             </div>
             <h2 className={'text-base text-center'}>Ник в instagram: <span className={'text-highlight'}>azarian_katerina</span></h2>
             <div>
-                <p className='text-center mt-10 text-base font-medium max-w-[350px]'>ДАВАЙТЕ ЗНАКОМИТЬСЯ!</p>
+                <p className='text-center mt-8 text-base font-medium max-w-[350px]'>ДАВАЙТЕ ЗНАКОМИТЬСЯ!</p>
                 <p className='text-center mt-2 text-base font-medium max-w-[350px]'>Заполните пожалуйста анкету, расскажите немного о себе и мы станем с вами ближе!</p>
                 <p className='text-center mt-2 text-base font-medium max-w-[350px]'>В замен, после заполнения анкеты, я каждому пришлю свой новый "Гайд по упаковке 2.0", который вы увидите первыми, абсолютно БЕСПЛАТНО!</p>
             </div>
