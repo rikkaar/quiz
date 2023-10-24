@@ -8,6 +8,12 @@ export default class UserStore {
         this._position = 0
         this._questions = [
             {
+                title: "Как вас зовут?",
+                placeholder: "Фио",
+                field: "name",
+                validation: ["string"]
+            },
+            {
                 title: 'Сколько вам лет?',
                 variants: ["До 18 лет", "От 18-25лет", "От 25-35лет", "От 35лет +"],
                 field: "age",
@@ -39,27 +45,21 @@ export default class UserStore {
             },
             {
                 title: "Что бы вы хотели изменить в своей жизни?",
-                placeholder: "Я бы хотел(а)..ю",
+                placeholder: "Я бы хотел(а)..",
                 field: "goal",
                 validation: ["string"]
             },
-            // {
-            //     title: "Как вас зовут?",
-            //     placeholder: "Фио",
-            //     field: "name",
-            //     validation: ["string"]
-            // },
-            // {
-            //     title: "Ваш номер телефона",
-            //     placeholder: "+7 (999) 999-99-99",
-            //     field: "number",
-            //     validation: ["phone"]
-            // },
-            // {
-            //     title: 'Как связаться?',
-            //     variants: ['telegram', 'whatsApp', 'viber'],
-            //     field: "messenger"
-            // },
+            {
+                title: "Ваш номер телефона",
+                placeholder: "+7 (999) 999-99-99",
+                field: "number",
+                validation: ["phone"]
+            },
+            {
+                title: 'Где с вами связаться?',
+                variants: ['telegram', 'whatsApp', 'viber'],
+                field: "messenger"
+            },
             // {
             //     title: 'У тебя уже был опыт в стилистике?',
             //     variants: ['да', 'нет'],

@@ -7,7 +7,7 @@ const Main = () => {
     let navigate = useNavigate()
     return (
         <div>
-            <h1 className="title">Анкета для подписчиков</h1>
+            <h1 className="title">Предзапись на курс instaКРЕАТОР</h1>
             <div className="flex justify-center items-center">
                 <div className="flex flex-col items-center gap-6">
                     <Description/>
